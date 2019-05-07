@@ -1,0 +1,25 @@
+fail_fast: true
+repos:
+- repo: git://github.com/pre-commit/pre-commit-hooks
+  rev: v2.2.1
+  hooks:
+    - id: check-added-large-files
+    - id: check-merge-conflict
+    - id: check-symlinks
+    - id: check-yaml
+    - id: debug-statements
+    - id: detect-private-key
+    - id: double-quote-string-fixer
+    - id: end-of-file-fixer
+    - id: fix-encoding-pragma
+    - id: flake8
+    - id: no-commit-to-branch
+
+- repo: local
+  hooks:
+    - id: snyk
+      name: Snyk
+      entry: snyk test
+      language: system
+      always_run: true
+      pass_filenames: false

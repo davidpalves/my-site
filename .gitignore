@@ -78,7 +78,14 @@ target/
 
 # celery beat schedule file
 celerybeat-schedule
-
+- repo: local
+  hooks:
+    - id: snyk
+      name: Snyk
+      entry: snyk test
+      language: system
+      always_run: true
+      pass_filenames: false
 # SageMath parsed files
 *.sage.py
 
@@ -107,6 +114,8 @@ venv.bak/
 # static
 aldra/assets/dist/*
 !aldra/assets/dist/.gitkeep
+
+.vscode
 
 # nodejs
 node_modules/
