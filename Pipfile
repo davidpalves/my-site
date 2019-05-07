@@ -1,0 +1,25 @@
+[[source]]
+name = "pypi"
+url = "https://pypi.org/simple"
+verify_ssl = true
+
+[dev-packages]
+flake8 = "*"
+model-mommy = "*"
+coverage = "*"
+pytest = "*"
+python-decouple = "*"
+django-model-utils = "*"
+
+[packages]
+django = "==2.2"
+djangorestframework = "*"
+django-cors-headers = "*"
+coreapi = "*"
+markdown = "*"
+django-filter = "*"
+django-crispy-forms = "*"
+django-guardian = "*"
+
+[requires]
+python_version = "3.7"
