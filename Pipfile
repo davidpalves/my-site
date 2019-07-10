@@ -12,7 +12,7 @@ python-decouple = "*"
 django-model-utils = "*"
 
 [packages]
-django = "==2.2"
+django = "==2.2.3"
 djangorestframework = "*"
 django-cors-headers = "*"
 coreapi = "*"

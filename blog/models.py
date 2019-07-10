@@ -4,6 +4,7 @@ from users.models import User
 from django.utils import timezone
 from markdown import markdown
 from django.utils.text import slugify
+from blog.enums import PostStatusEnum, POST_STATUS_ENUM
 
 
 class Post(models.Model):
@@ -23,6 +24,13 @@ class Post(models.Model):
         max_length=150,
         unique=True
         )
+
+    status = models.PositiveIntegerField(
+        choices=POST_STATUS_ENUM,
+        default=PostStatusEnum.DRAFT,
+        blank=False,
+        null=False
+    )
 
     text = models.TextField()
 
@@ -44,6 +52,7 @@ class Post(models.Model):
 
     def publish(self):
         self.published_date = timezone.now()
+        self.status = PostStatusEnum.PUBLISHED
         self.save()
 
     def __str__(self):
