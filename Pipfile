@@ -10,6 +10,7 @@ coverage = "*"
 pytest = "*"
 python-decouple = "*"
 django-model-utils = "*"
+pre-commit = "*"
 
 [packages]
 django = "==2.2.3"
