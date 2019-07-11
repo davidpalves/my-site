@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from django.utils.safestring import mark_safe
 from django.db import models
 from users.models import User
@@ -51,9 +52,10 @@ class Post(models.Model):
         return mark_safe(markdown(self.text, safe_mode='escape'))
 
     def publish(self):
-        self.published_date = timezone.now()
-        self.status = PostStatusEnum.PUBLISHED
-        self.save()
+        if self.status is not PostStatusEnum.PUBLISHED:
+            self.published_date = timezone.now()
+            self.status = PostStatusEnum.PUBLISHED
+            self.save()
 
     def __str__(self):
         return self.title

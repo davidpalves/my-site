@@ -11,6 +11,7 @@ pytest = "*"
 python-decouple = "*"
 django-model-utils = "*"
 pre-commit = "*"
+ipdb = "*"
 
 [packages]
 django = "==2.2.3"
