@@ -13,7 +13,8 @@ class Post(models.Model):
         User,
         on_delete=models.CASCADE,
         blank=False,
-        null=False)
+        null=False
+    )
 
     title = models.CharField(
         max_length=255,
@@ -24,7 +25,7 @@ class Post(models.Model):
     slug = models.SlugField(
         max_length=150,
         unique=True
-        )
+    )
 
     status = models.PositiveIntegerField(
         choices=POST_STATUS_ENUM,
