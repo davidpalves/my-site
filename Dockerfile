@@ -1,7 +1,5 @@
 FROM python:3.7
 
-MAINTAINER davidpierrea
-
 ENV PYTHONUNBUFFERED 1
 
 COPY . /app/
