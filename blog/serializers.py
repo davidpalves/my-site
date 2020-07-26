@@ -4,9 +4,10 @@ from blog.enums import POST_STATUS_ENUM
 
 
 class PostSerializer(serializers.ModelSerializer):
-    author = serializers.ReadOnlyField(source='author.id')
+    author = serializers.ReadOnlyField(source='author.first_name')
     slug = serializers.SlugField(read_only=True, required=False)
     status = serializers.ChoiceField(choices=POST_STATUS_ENUM, default=0)
+    published_date = serializers.DateField(required=True)
 
     def get_queryset(self):
         slug = self.kwargs['slug']

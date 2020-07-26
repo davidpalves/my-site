@@ -36,11 +36,11 @@ class Post(models.Model):
 
     text = models.TextField()
 
-    created_date = models.DateTimeField(
+    created_date = models.DateField(
         default=timezone.now
     )
 
-    published_date = models.DateTimeField(
+    published_date = models.DateField(
         blank=True,
         null=True
     )
