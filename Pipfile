@@ -14,7 +14,7 @@ pre-commit = "*"
 ipdb = "*"
 
 [packages]
-django = "==2.2.13"
+django = "==2.2.21"
 djangorestframework = "*"
 django-cors-headers = "*"
 coreapi = "*"
