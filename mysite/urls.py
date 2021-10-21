@@ -9,6 +9,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('posts/', include('blog.urls')),
     path('users/', include('users.urls')),
+    path('contact/', include('contact.urls')),
     path('register/', RegistrationView.as_view(), name='registration'),
     path('docs/', include_docs_urls(title='Blog API Documentation'))
 ]

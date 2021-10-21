@@ -8,7 +8,7 @@ from rest_framework.decorators import action
 
 class PostViewSet(viewsets.ModelViewSet):
     serializer_class = PostSerializer
-    queryset = Post.objects.all()
+    queryset = Post.objects.all().order_by('-published_date')
     lookup_field = 'slug'
 
     @action(detail=True, methods=['GET'], name='Publish Post')
