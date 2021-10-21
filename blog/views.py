@@ -22,5 +22,4 @@ class PostViewSet(viewsets.ModelViewSet):
             return Response({'status': 'Failed'})
 
     def perform_create(self, serializer):
-        import ipdb; ipdb.set_trace()
         serializer.save(author=self.request.user)
