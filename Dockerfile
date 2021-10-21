@@ -6,10 +6,8 @@ COPY . /app/
 
 WORKDIR /app
 
-RUN pip install pipenv
-
-RUN pipenv install --dev
+RUN pip install -r requirements.txt
 
 EXPOSE 8000
 
-CMD [ "pipenv", "run", "python", "./manage.py", "runserver", "0.0.0.0:8000" ]
+CMD [ "python", "./manage.py", "runserver", "0.0.0.0:8000" ]
