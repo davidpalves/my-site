@@ -1,20 +1,14 @@
 from rest_framework import serializers
-from blog.models import Post, Tag
-from blog.enums import POST_STATUS_ENUM
-
-
-class TagsSerializer(serializers.ModelSerializer):
-    class Meta:
-        fields = ('label',)
-        model = Tag
+from blog.models import Post
+from blog.enums import POST_STATUS_ENUM, PostStatusEnum
 
 
 class PostSerializer(serializers.ModelSerializer):
     author = serializers.ReadOnlyField(source='author.first_name')
     slug = serializers.SlugField(read_only=True, required=False)
-    status = serializers.ChoiceField(choices=POST_STATUS_ENUM, default=0)
-    published_date = serializers.DateField(required=True)
-    tags = TagsSerializer(many=True)
+    status = serializers.ChoiceField(choices=POST_STATUS_ENUM, default=PostStatusEnum.DRAFT)
+    published_date = serializers.DateField(required=False)
+    tags = serializers.SerializerMethodField()
 
     def get_queryset(self):
         slug = self.kwargs['slug']
@@ -27,14 +21,19 @@ class PostSerializer(serializers.ModelSerializer):
             'author',
             'status',
             'text',
+            'tags',
+            'read_time',
             'published_date',
-            'tags'
         )
         model = Post
         lookup_field = 'slug'
         extra_kwargs = {
             'url': {'lookup_field': 'slug'}
         }
+
+    def get_tags(self, obj):
+        tags = obj.tags.split(", ")
+        return tags
 
 
 class ChangePostStatusSerializer(serializers.ModelSerializer):
