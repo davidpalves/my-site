@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 class PostStatusEnum(object):
 
-    DRAFT = 0
-    PUBLISHED = 1
-    ARCHIVED = 2
+    DRAFT = 'draft'
+    PUBLISHED = 'published'
+    ARCHIVED = 'archived'
 
 
 POST_STATUS_ENUM = (
