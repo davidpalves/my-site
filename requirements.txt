@@ -133,7 +133,7 @@ Twisted==20.3.0
 typed-ast==1.4.1
 typing-extensions==3.10.0.2
 uritemplate==3.0.1
-urllib3==1.25.9
+urllib3==1.26.5
 virtualenv==20.8.1
 virtualenv-clone==0.5.4
 w3lib==1.19.0
