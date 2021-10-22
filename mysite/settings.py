@@ -49,6 +49,7 @@ INSTALLED_APPS = [
 
     'rest_framework',
     'corsheaders',
+    'django_filters',
 
     'common',
     'users',
@@ -68,6 +69,12 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'mysite.urls'
+
+REST_FRAMEWORK = {
+    'DEFAULT_FILTER_BACKENDS': (
+        'django_filters.rest_framework.DjangoFilterBackend',
+    ),
+}
 
 TEMPLATES = [
     {

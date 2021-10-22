@@ -5,16 +5,18 @@ from rest_framework.decorators import action
 
 from blog.models import Post
 from blog.serializers import ChangePostStatusSerializer, PostSerializer
-from blog.enums import PostStatusEnum
+from blog.choices import POST_STATUS_ENUM
+from blog.filters import PostsFilter
 
 
 class PostViewSet(viewsets.ModelViewSet):
     serializer_class = PostSerializer
     lookup_field = 'slug'
+    filter_class = PostsFilter
 
     def get_queryset(self):
         if not self.request.user.is_staff or not self.request.user.is_superuser:
-            return Post.objects.filter(status=PostStatusEnum.PUBLISHED).order_by('-published_date')
+            return Post.objects.filter(status=POST_STATUS_ENUM.published).order_by('-published_date')
         
         return Post.objects.all().order_by('-published_date')
         

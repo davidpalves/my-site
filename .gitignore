@@ -119,3 +119,6 @@ aldra/assets/dist/*
 
 # nodejs
 node_modules/
+
+#idea
+.idea/

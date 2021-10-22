@@ -1,12 +1,12 @@
 from rest_framework import serializers
 from blog.models import Post
-from blog.enums import POST_STATUS_ENUM, PostStatusEnum
+from blog.choices import POST_STATUS_ENUM
 
 
 class PostSerializer(serializers.ModelSerializer):
     author = serializers.ReadOnlyField(source='author.first_name')
     slug = serializers.SlugField(read_only=True, required=False)
-    status = serializers.ChoiceField(choices=POST_STATUS_ENUM, default=PostStatusEnum.DRAFT)
+    status = serializers.ChoiceField(choices=POST_STATUS_ENUM, default=POST_STATUS_ENUM.draft)
     published_date = serializers.DateField(required=False)
     tags = serializers.SerializerMethodField()
 

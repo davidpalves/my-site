@@ -8,7 +8,7 @@ from django.utils.text import slugify
 from markdown import markdown
 from readtime import of_markdown
 
-from blog.enums import PostStatusEnum, POST_STATUS_ENUM
+from blog.choices import POST_STATUS_ENUM
 from users.models import User
 
 
@@ -18,7 +18,7 @@ class Post(models.Model):
     title = models.CharField(max_length=255, null=False, blank=False)
     status = models.CharField(
         choices=POST_STATUS_ENUM,
-        default=PostStatusEnum.DRAFT,
+        default=POST_STATUS_ENUM.draft,
         blank=False,
         null=False,
         max_length=10,
@@ -44,19 +44,19 @@ class Post(models.Model):
         return of_markdown(self.text, wpm=225).minutes
     
     def publish(self):
-        if self.status is not PostStatusEnum.PUBLISHED:
+        if self.status is not PostStatusEnum.published:
             self.published_date = timezone.now()
-            self.status = PostStatusEnum.PUBLISHED
+            self.status = POST_STATUS_ENUM.published
             self.save()
 
     def archive(self):
-        if self.status is not PostStatusEnum.ARCHIVED:
-            self.status = PostStatusEnum.ARCHIVED
+        if self.status is not POST_STATUS_ENUM.archived:
+            self.status = POST_STATUS_ENUM.archived
             self.save()
 
     def draft(self):
-        if self.status is not PostStatusEnum.DRAFT:
-            self.status = PostStatusEnum.DRAFT
+        if self.status is not POST_STATUS_ENUM.draft:
+            self.status = POST_STATUS_ENUM.draft
             self.save()
 
     def __str__(self):
