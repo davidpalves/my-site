@@ -24,6 +24,9 @@ class PostViewSet(viewsets.ModelViewSet):
     def publish_post(self, request, slug=None):
         post = self.get_object()
         action = request.data.get('action', None)
+
+        if not request.user.is_staff or not request.user.is_superuser:
+            return Response({'details': 'Unauthorized request'}, status=status.HTTP_403_BAD_REQUEST)
         
         if action not in ['draft', 'publish', 'archive']:
             return Response({'status': 'Action must be [draft, publish, archive]'}, status=status.HTTP_400_BAD_REQUEST)
