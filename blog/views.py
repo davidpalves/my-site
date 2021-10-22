@@ -5,7 +5,7 @@ from rest_framework.decorators import action
 
 from blog.models import Post
 from blog.serializers import ChangePostStatusSerializer, PostSerializer
-from blog.choices import POST_STATUS_ENUM
+from blog.choices import POST_STATUS_CHOICES
 from blog.filters import PostsFilter
 
 
@@ -16,7 +16,7 @@ class PostViewSet(viewsets.ModelViewSet):
 
     def get_queryset(self):
         if not self.request.user.is_staff or not self.request.user.is_superuser:
-            return Post.objects.filter(status=POST_STATUS_ENUM.published).order_by('-published_date')
+            return Post.objects.filter(status=POST_STATUS_CHOICES.published).order_by('-published_date')
         
         return Post.objects.all().order_by('-published_date')
         
